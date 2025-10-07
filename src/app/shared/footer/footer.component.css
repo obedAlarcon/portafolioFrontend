@@ -1,0 +1,27 @@
+/* footer.component.css */
+footer {
+    background-color: #1a202c; /* Fondo oscuro */
+  }
+  
+  footer h2 {
+    color: #fff;
+  }
+  
+  footer a {
+    color: #edf2f7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  footer a:hover {
+    color: #fbd38d; /* Color amarillo suave */
+  }
+  
+  footer .social-icons i {
+    transition: transform 0.3s ease;
+  }
+  
+  footer .social-icons i:hover {
+    transform: scale(1.1);
+  }
+  

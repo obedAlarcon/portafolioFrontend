@@ -1,0 +1,64 @@
+<section class="bg-gray-800 text-white py-16 px-6">
+  <h2 class="text-3xl font-bold text-center mt-12">Proyectos</h2>
+
+  <!-- Botón Nuevo Proyecto centrado -->
+  <div class="flex justify-center mt-5 mb-10">
+    <a href="/login"
+       class="bg-yellow-400 text-gray-900 font-semibold py-3 px-6 rounded-full shadow hover:bg-yellow-300 transition-all text-center whitespace-nowrap">
+      Nuevo Proyecto
+    </a>
+  </div>
+
+  <!-- Contenedor en grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div *ngFor="let item of proyect" class="bg-gray-700 p-6 rounded-lg shadow hover:shadow-xl hover:scale-105 transition-opacity duration-1000">
+      <img 
+        [src]="item.image" 
+        class="w-full h-48 object-cover rounded mb-4 cursor-pointer"
+        alt="Imagen del proyecto"
+        (click)="abrirModal(item)" 
+      />
+      <h3 class="text-xl font-semibold text-yellow-400 mb-2">{{ item.name }}</h3>
+ 
+    </div>
+  </div>
+
+  <!-- Modal único, FUERA del *ngFor -->
+<div 
+  [ngClass]="{'hidden': !modalVisible, 'flex': modalVisible}"
+  class="fixed inset-0 bg-gray-900 bg-opacity-60 items-center justify-center z-50 transition-opacity duration-600"
+  (click)="cerrarModal()">
+
+<div
+  class="bg-gray-300 text-black p-8 rounded-xl w-full max-w-xl relative shadow-2xl ring-1 ring-gray-300"
+  (click)="$event.stopPropagation()">
+
+      <button class="absolute top-2 right-2 text-black text-xl" (click)="cerrarModal()">✖</button>
+      <h2 class="text-2xl font-bold mb-4">{{ proyectoSeleccionado?.name }}</h2>
+      <img [src]="proyectoSeleccionado?.image" class="w-full h-64 object-cover rounded mb-4" />
+      <p><strong>Backend:</strong> {{ proyectoSeleccionado?.backend }}</p>
+      <p><strong>Frontend:</strong> {{ proyectoSeleccionado?.frontend }}</p>
+      <p><strong>Librerías:</strong> {{ proyectoSeleccionado?.librarys }}</p>
+      <div class="mt-6 flex flex-wrap gap-4">
+  <a 
+    [href]="proyectoSeleccionado?.urlgit" 
+    target="_blank" 
+    class="bg-gray-900 text-white px-5 py-2 rounded-full hover:bg-yellow-400 hover:text-gray-900 transition"
+  >
+    Ver en GitHub
+  </a>
+
+  <a 
+    [href]="proyectoSeleccionado?.librarys" 
+    target="_blank" 
+    class="bg-yellow-400 text-gray-900 px-5 py-2 rounded-full hover:bg-yellow-300 transition"
+  >
+    Ver Demo
+  </a>
+</div>
+
+    </div>
+  </div>
+
+  
+</section>

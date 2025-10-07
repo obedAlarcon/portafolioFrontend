@@ -1,0 +1,14 @@
+
+
+{
+
+    "/api/*":{
+        "target":" https://portafolio-eipe.onrender.com",
+        "secure":true,
+        "logLevel":"debug",
+        "changeOrigen":true
+    }
+
+
+}
+
