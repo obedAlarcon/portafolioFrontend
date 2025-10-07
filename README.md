@@ -1,27 +1,103 @@
 # Portafolio
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.0.
+Proyecto **frontend** desarrollado con **Angular 17.2.0**, conectado a un **backend Express (CertiRed)** que corre en el puerto `5000`.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🚀 Instalación
 
-## Code scaffolding
+1. Clona el repositorio o descarga el proyecto.
+2. Instala las dependencias necesarias:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+   ```bash
+   npm install
+   ```
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 🖥️ Servidor de desarrollo
 
-## Running unit tests
+Ejecuta el siguiente comando para iniciar el servidor local:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+ng serve
+```
 
-## Running end-to-end tests
+Luego abre tu navegador en:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
+http://localhost:4200/
+```
 
-## Further help
+La aplicación se recargará automáticamente cada vez que modifiques un archivo fuente.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+---
+
+## 🔗 Conexión con el backend
+
+El backend (API de **CertiRed**) debe estar corriendo en:
+
+```
+http://localhost:5000
+```
+
+Documentación interactiva de la API (Swagger):
+
+```
+http://localhost:5000/api-docs
+```
+
+Asegúrate de tener ambos servidores (frontend y backend) ejecutándose para que la comunicación funcione correctamente.
+
+---
+
+## ⚙️ Compilación para producción
+
+Para generar una versión lista para producción, ejecuta:
+
+```bash
+ng build
+```
+
+Los archivos se guardarán en la carpeta `dist/`.
+
+---
+
+## 🧩 Generar nuevos componentes
+
+Puedes generar nuevos componentes, servicios o módulos con los siguientes comandos:
+
+```bash
+ng generate component nombre-componente
+ng generate service nombre-servicio
+ng generate module nombre-modulo
+```
+
+---
+
+## 🧪 Pruebas
+
+Ejecuta las pruebas unitarias:
+
+```bash
+ng test
+```
+
+Ejecuta pruebas end-to-end:
+
+```bash
+ng e2e
+```
+
+---
+
+## 📘 Más información
+
+Para más ayuda sobre Angular CLI, ejecuta:
+
+```bash
+ng help
+```
+
+O visita la documentación oficial:
+[https://angular.io/cli](https://angular.io/cli)
