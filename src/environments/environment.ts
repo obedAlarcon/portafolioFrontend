@@ -1,4 +1,4 @@
 export const environment = {
-    production:false,
-    API_URL:'https://portafolio-eipe.onrender.com'
+    production:true,
+    API_URL:'https://portafolio-b9sx.onrender.com'
 };       
