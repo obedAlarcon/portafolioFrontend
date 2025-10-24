@@ -50,5 +50,25 @@ cerrarModal() {
   this.proyectoSeleccionado = null;
 }
 
+deleteProyect(proyecto: Proyect) {
+  if (!proyecto) return;
+
+  const confirmar = confirm(`¿Seguro que deseas eliminar el proyecto "${proyecto.name}"?`);
+  if (!confirmar) return;
+
+  this.proyectService.deleteProyect(proyecto.id).subscribe({
+    next: () => {
+      this.proyect = this.proyect.filter(p => p.id !== proyecto.id);
+      this.cerrarModal();
+      alert('Proyecto eliminado correctamente.');
+    },
+    error: (err) => {
+      console.error('Error al eliminar el proyecto:', err);
+      alert('Hubo un error al eliminar el proyecto.');
+    }
+  });
+}
+
+
 
 }

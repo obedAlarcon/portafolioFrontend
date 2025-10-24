@@ -37,8 +37,25 @@ export class ProyectService {
     return this.http.post(`${this.url}/api/v1/proyect/upload/`, formData, { headers });
   }
 
+    deleteProyect(id: number): Observable<any> {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      console.error('Token no encontrado');
+      throw new Error('No hay token de autenticación');
+    }
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.delete(`${this.url}/api/v1/proyect/${id}`, { headers });
+  }
+
   // Método para formatear la imagen (si es necesario en otro caso)
   formatImage(image: string): string[] {
     return image ? image.split(',') : [];
   }
+
+  
 }
