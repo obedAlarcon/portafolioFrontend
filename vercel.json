@@ -1,8 +1,19 @@
 {
-  "buildCommand": "ng build --configuration production",
-  "outputDirectory": "dist/portafolio",
-  "framework": "angular",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "dist/portafolio/server/main.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "dist/portafolio/browser/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "dist/portafolio/server/main.js"
+    }
   ]
 }
