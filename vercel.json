@@ -2,18 +2,20 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/portafolio/server/main.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "dist/portafolio/browser/**",
-      "use": "@vercel/static"
+      "src": "angular.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/portafolio"
+      }
     }
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "dist/portafolio/server/main.js"
+      "handle": "filesystem"
+    },
+    {
+      "src": "/.*",
+      "dest": "/index.html"
     }
   ]
 }
