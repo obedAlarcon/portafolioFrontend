@@ -1,21 +1,23 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import Swal from 'sweetalert2'; // ✅ Importar SweetAlert2
+import { RouterModule, Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
+import Swal from 'sweetalert2';
 import { ProyectService } from '../../../services/proyect.service';
 
 @Component({
-    selector: 'app-formproyect',
-    imports: [FormsModule, ReactiveFormsModule, CommonModule, RouterModule,
-        // TODO: `HttpClientModule` should not be imported into a component directly.
-        // Please refactor the code to add `provideHttpClient()` call to the provider list in the
-        // application bootstrap logic and remove the `HttpClientModule` import from this component.
-        HttpClientModule],
-    templateUrl: './formproyect.component.html',
-    styleUrls: ['./formproyect.component.css'] // ✅ Corregido: styleUrl → styleUrls
+  selector: 'app-formproyect',
+  standalone: true,
+  templateUrl: './formproyect.component.html',
+  styleUrls: ['./formproyect.component.css'],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule
+  ]
 })
 export default class FormproyectComponent implements OnInit {
 
@@ -24,13 +26,13 @@ export default class FormproyectComponent implements OnInit {
   fileName: string | null = null;
   imageError: string | null = null;
   selectedFile: File | null = null;
-  crearProyecto: boolean = true; // ✅ Switch para resetear después de enviar
-  router: any;
+  crearProyecto: boolean = true;
 
   constructor(
     private fb: FormBuilder,
     private proyectService: ProyectService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -39,7 +41,7 @@ export default class FormproyectComponent implements OnInit {
       backend: ['', Validators.required],
       frontend: ['', Validators.required],
       librarys: ['', Validators.required],
-      urlgit:['',Validators.required]
+      urlgit: ['', Validators.required]
     });
   }
 
@@ -50,14 +52,14 @@ export default class FormproyectComponent implements OnInit {
     if (file) {
       const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
       if (!allowedTypes.includes(file.type)) {
-        this.imageError = 'Solo se permiten archivos de tipo imagen (JPG, JPEG, PNG).';
+        this.imageError = 'Solo se permiten imágenes (JPG, JPEG, PNG).';
         this.selectedImage = null;
         this.selectedFile = null;
         return;
       }
 
       if (file.size > 2 * 1024 * 1024) {
-        this.imageError = 'El archivo es demasiado grande. El tamaño máximo permitido es 2MB.';
+        this.imageError = 'El archivo es demasiado grande. Máximo 2MB.';
         this.selectedImage = null;
         this.selectedFile = null;
         return;
@@ -91,18 +93,17 @@ export default class FormproyectComponent implements OnInit {
     formData.append('image', this.selectedFile, this.selectedFile.name);
 
     this.proyectService.addProyect(formData).subscribe({
-      next: (response) => {
+      next: () => {
         Swal.fire({
           icon: 'success',
           title: '¡Proyecto creado!',
           text: 'Tu proyecto ha sido guardado exitosamente.',
-          confirmButtonColor: '#facc15', // amarillo
-          background: '#1f2937',         // gris oscuro (tailwind gray-800)
+          background: '#1f2937',
           color: 'white',
-           timer: 2000,
-           showConfirmButton: false
-              }).then(() => {
-                 this.router.navigate(['/']);    
+          timer: 2000,
+          showConfirmButton: false
+        }).then(() => {
+          this.router.navigate(['/']);
         });
 
         if (this.crearProyecto) {
@@ -114,6 +115,7 @@ export default class FormproyectComponent implements OnInit {
           this.cdr.detectChanges();
         }
       },
+
       error: (error: HttpErrorResponse) => {
         Swal.fire({
           icon: 'error',
@@ -121,7 +123,6 @@ export default class FormproyectComponent implements OnInit {
           text: error.status === 0
             ? 'No se pudo conectar al servidor.'
             : `Hubo un error: ${error.message}`,
-          confirmButtonColor: '#ef4444', // rojo
           background: '#1f2937',
           color: 'white'
         });
