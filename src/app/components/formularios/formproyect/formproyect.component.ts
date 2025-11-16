@@ -13,7 +13,7 @@ import { ProyectService } from '../../../services/proyect.service';
   templateUrl: './formproyect.component.html',
   styleUrls: ['./formproyect.component.css'],
   imports: [
-    CommonModule,
+  
     FormsModule,
     ReactiveFormsModule,
     RouterModule
