@@ -5,11 +5,10 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [ReactiveFormsModule,CommonModule, RouterModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+    selector: 'app-login',
+    imports: [ReactiveFormsModule, CommonModule, RouterModule],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.css'
 })
 export default class LoginComponent {
   

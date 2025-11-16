@@ -6,12 +6,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-reset-password',
-  standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, CommonModule],
-  templateUrl: './reset-password.component.html',
-  
-  styleUrls: ['./reset-password.component.css']
+    selector: 'app-reset-password',
+    imports: [ReactiveFormsModule, FormsModule, CommonModule],
+    templateUrl: './reset-password.component.html',
+    styleUrls: ['./reset-password.component.css']
 })
 export class ResetPasswordComponent implements OnInit {
    password = '';

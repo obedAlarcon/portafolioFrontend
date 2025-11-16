@@ -8,11 +8,10 @@ import { error } from 'console';
 
 
 @Component({
-  selector: 'app-proyects',
-  standalone: true,
-  imports: [CommonModule,RouterModule],
-  templateUrl: './proyects.component.html',
-  styleUrl: './proyects.component.css'
+    selector: 'app-proyects',
+    imports: [CommonModule, RouterModule],
+    templateUrl: './proyects.component.html',
+    styleUrl: './proyects.component.css'
 })
 export default class ProyectsComponent implements OnInit {
  proyect:Proyect[]=[]

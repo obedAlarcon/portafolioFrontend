@@ -9,11 +9,10 @@ import ContactComponent from "../contact/contact.component";
 
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [RouterModule,  ProyectsComponent, SkillsComponent, ContactComponent],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+    selector: 'app-home',
+    imports: [RouterModule, ProyectsComponent, SkillsComponent, ContactComponent],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.css'
 })
 export default class HomeComponent {
 

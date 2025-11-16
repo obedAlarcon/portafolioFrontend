@@ -7,11 +7,10 @@ import Swal from 'sweetalert2'
 import { ContactService } from '../../../services/contact.service';
 
 @Component({
-  selector: 'app-contact',
-  standalone: true,
-  imports: [RouterModule,CommonModule,ReactiveFormsModule],
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css'] 
+    selector: 'app-contact',
+    imports: [RouterModule, CommonModule, ReactiveFormsModule],
+    templateUrl: './contact.component.html',
+    styleUrls: ['./contact.component.css']
 })
 export default class ContactComponent {
   contactForm!: FormGroup;

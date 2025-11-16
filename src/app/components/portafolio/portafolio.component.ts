@@ -6,11 +6,10 @@ import { filter } from 'rxjs';
 import HomeComponent from "./home/home.component";
 
 @Component({
-  selector: 'app-portafolio',
-  standalone: true,
-  imports: [RouterOutlet, RouterModule, FooterComponent, NavbarComponent],
-  templateUrl: './portafolio.component.html',
-  styleUrl: './portafolio.component.css'
+    selector: 'app-portafolio',
+    imports: [RouterOutlet, RouterModule, FooterComponent, NavbarComponent],
+    templateUrl: './portafolio.component.html',
+    styleUrl: './portafolio.component.css'
 })
 export class PortafolioComponent implements OnInit {
 

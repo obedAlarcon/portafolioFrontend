@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-sobremi',
-  standalone: true,
-  imports: [],
-  templateUrl: './sobremi.component.html',
-  styleUrl: './sobremi.component.css'
+    selector: 'app-sobremi',
+    imports: [],
+    templateUrl: './sobremi.component.html',
+    styleUrl: './sobremi.component.css'
 })
 export default class SobremiComponent {
 

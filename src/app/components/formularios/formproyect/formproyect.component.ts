@@ -8,15 +8,14 @@ import Swal from 'sweetalert2'; // ✅ Importar SweetAlert2
 import { ProyectService } from '../../../services/proyect.service';
 
 @Component({
-  selector: 'app-formproyect',
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, RouterModule, 
-// TODO: `HttpClientModule` should not be imported into a component directly.
-// Please refactor the code to add `provideHttpClient()` call to the provider list in the
-// application bootstrap logic and remove the `HttpClientModule` import from this component.
-HttpClientModule],
-  templateUrl: './formproyect.component.html',
-  styleUrls: ['./formproyect.component.css'] // ✅ Corregido: styleUrl → styleUrls
+    selector: 'app-formproyect',
+    imports: [FormsModule, ReactiveFormsModule, CommonModule, RouterModule,
+        // TODO: `HttpClientModule` should not be imported into a component directly.
+        // Please refactor the code to add `provideHttpClient()` call to the provider list in the
+        // application bootstrap logic and remove the `HttpClientModule` import from this component.
+        HttpClientModule],
+    templateUrl: './formproyect.component.html',
+    styleUrls: ['./formproyect.component.css'] // ✅ Corregido: styleUrl → styleUrls
 })
 export default class FormproyectComponent implements OnInit {
 
