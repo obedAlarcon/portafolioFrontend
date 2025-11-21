@@ -3,7 +3,7 @@ import { NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/rout
 import { FooterComponent } from '../../shared/footer/footer.component';
 import NavbarComponent from "../../shared/navbar/navbar.component";
 import { filter } from 'rxjs';
-import HomeComponent from "./home/home.component";
+
 
 @Component({
     selector: 'app-portafolio',
