@@ -27,10 +27,7 @@ export const routes: Routes = [
             path:'contact',
             loadComponent:()=>import('../contact/contact.component')
         },
-        {
-            path:'customers',
-            loadComponent:()=>import('../customers/customers.component')
-        }
+      
     ]
 
     }
