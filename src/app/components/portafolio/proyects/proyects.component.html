@@ -1,209 +1,73 @@
-<section class="bg-gray-800 text-white py-16 px-6">
-  <h2 class="text-3xl font-bold text-center mt-12">Proyectos</h2>
+<section class="bg-gray-800 text-white py-16 px-6 md:px-20">
 
-  <!-- Botón Nuevo Proyecto centrado -->
-  <div class="flex justify-center mt-5 mb-10">
-    <button 
-      (click)="abrirAddModal()"
-      class="bg-yellow-400 text-gray-900 font-semibold py-3 px-6 rounded-full shadow hover:bg-yellow-300 transition-all text-center whitespace-nowrap">
-      Nuevo Proyecto
+  <div class="flex justify-between items-center mb-10">
+    <h2 class="text-4xl font-bold">Proyectos</h2>
+
+    <!-- Botón Crear Proyecto -->
+    <button
+      (click)="irCrearProyecto()"
+      class="bg-yellow-400 text-gray-900 font-semibold py-3 px-6 rounded-full shadow hover:bg-yellow-300 transition-all">
+      Crear Proyecto
     </button>
   </div>
 
-  <!-- Mensaje si no hay proyectos -->
-  <div *ngIf="proyect.length === 0" class="text-center py-8">
-    <p class="text-xl">No hay proyectos disponibles</p>
-  </div>
+  <!-- Cards -->
+  <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
 
-  <!-- Contenedor en grid -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" *ngIf="proyect.length > 0">
-    <div *ngFor="let item of proyect" class="bg-gray-700 p-6 rounded-lg shadow hover:shadow-xl hover:scale-105 transition-all duration-300">
-      <div class="w-full h-48 mb-4 rounded overflow-hidden cursor-pointer" (click)="abrirModal(item)">
-        <img 
-          [src]="item.image" 
-          [alt]="item.name"
-          class="w-full h-full object-cover"
-          (error)="item.image = '/assets/placeholder-image.jpg'"
-        />
-      </div>
-      
-      <h3 class="text-xl font-semibold text-yellow-400 mb-2">{{ item.name }}</h3>
-      <p class="text-gray-300 mb-2">{{ item.backend }}</p>
-      <p class="text-sm text-gray-400"><strong>Tecnologías:</strong> {{ item.frontend }}</p>
+    <div *ngFor="let p of proyects" class="bg-gray-900 rounded-xl shadow-lg p-4">
+
+      <img [src]="p.image" alt="Proyecto" class="w-full h-48 object-cover rounded-lg mb-4">
+
+      <h3 class="text-xl font-semibold mb-4">{{ p.name }}</h3>
+
+      <button
+        (click)="abrirModal(p)"
+        class="w-full bg-yellow-400 text-gray-900 font-semibold py-2 rounded-full hover:bg-yellow-300 transition-all">
+        Ver Detalles
+      </button>
     </div>
-  </div>
 
-  <!-- Modal para AGREGAR nuevo proyecto -->
-  <div 
-    *ngIf="addModalVisible"
-    class="fixed inset-0 bg-gray-900 bg-opacity-60 flex items-center justify-center z-50 transition-opacity duration-300"
-    (click)="cerrarAddModal()">
-
-    <div
-      class="bg-gray-300 text-black p-8 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative shadow-2xl ring-1 ring-gray-300"
-      (click)="$event.stopPropagation()">
-
-      <button class="absolute top-4 right-4 text-black text-xl hover:text-red-500 transition" (click)="cerrarAddModal()">✖</button>
-      
-      <h2 class="text-2xl font-bold mb-6 text-center">Agregar Nuevo Proyecto</h2>
-
-      <form [formGroup]="proyectForm" (ngSubmit)="addProyect()">
-        <!-- Preview de imagen -->
-        <div class="mb-4 text-center">
-          <div class="w-48 h-48 mx-auto mb-4 border-2 border-dashed border-gray-400 rounded-lg overflow-hidden">
-            <img 
-              [src]="imagePreview || '/assets/placeholder-image.jpg'" 
-              alt="Preview" 
-              class="w-full h-full object-cover"
-            />
-          </div>
-          <input 
-            type="file" 
-            accept="image/*" 
-            (change)="onImageSelected($event)"
-            class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-yellow-400 file:text-gray-900 hover:file:bg-yellow-300"
-            required
-          >
-        </div>
-
-        <!-- Campo Nombre -->
-        <div class="mb-4">
-          <label class="block text-gray-700 font-semibold mb-2">Nombre del Proyecto *</label>
-          <input 
-            type="text" 
-            formControlName="name"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
-            placeholder="Nombre del proyecto"
-          >
-          <div *ngIf="proyectForm.get('name')?.invalid && proyectForm.get('name')?.touched" class="text-red-500 text-sm mt-1">
-            El nombre es requerido
-          </div>
-        </div>
-
-        <!-- Campo Descripción -->
-        <div class="mb-4">
-          <label class="block text-gray-700 font-semibold mb-2">Descripción *</label>
-          <textarea 
-            formControlName="description"
-            rows="3"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
-            placeholder="Descripción del proyecto"
-          ></textarea>
-          <div *ngIf="proyectForm.get('description')?.invalid && proyectForm.get('description')?.touched" class="text-red-500 text-sm mt-1">
-            La descripción es requerida
-          </div>
-        </div>
-
-        <!-- Campo Tecnologías -->
-        <div class="mb-4">
-          <label class="block text-gray-700 font-semibold mb-2">Tecnologías *</label>
-          <input 
-            type="text" 
-            formControlName="technologies"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
-            placeholder="React, Node.js, MongoDB, etc."
-          >
-          <div *ngIf="proyectForm.get('technologies')?.invalid && proyectForm.get('technologies')?.touched" class="text-red-500 text-sm mt-1">
-            Las tecnologías son requeridas
-          </div>
-        </div>
-
-        <!-- Campo GitHub URL -->
-        <div class="mb-4">
-          <label class="block text-gray-700 font-semibold mb-2">URL de GitHub</label>
-          <input 
-            type="url" 
-            formControlName="githubUrl"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
-            placeholder="https://github.com/usuario/proyecto"
-          >
-        </div>
-
-        <!-- Campo Demo URL -->
-        <div class="mb-6">
-          <label class="block text-gray-700 font-semibold mb-2">URL de Demo</label>
-          <input 
-            type="url" 
-            formControlName="demoUrl"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
-            placeholder="https://midemo.com"
-          >
-        </div>
-
-        <!-- Botones -->
-        <div class="flex justify-end gap-4">
-          <button 
-            type="button" 
-            (click)="cerrarAddModal()"
-            class="bg-gray-500 text-white px-6 py-2 rounded-full hover:bg-gray-600 transition"
-          >
-            Cancelar
-          </button>
-          <button 
-            type="submit" 
-            [disabled]="proyectForm.invalid || !selectedImage"
-            class="bg-yellow-400 text-gray-900 px-6 py-2 rounded-full hover:bg-yellow-300 transition disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Crear Proyecto
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Modal para VER proyecto (existente) -->
-  <div 
-    *ngIf="modalVisible"
-    class="fixed inset-0 bg-gray-900 bg-opacity-60 flex items-center justify-center z-50 transition-opacity duration-300"
-    (click)="cerrarModal()">
-
-    <div
-      class="bg-gray-300 text-black p-8 rounded-xl w-full max-w-xl max-h-[90vh] overflow-y-auto relative shadow-2xl ring-1 ring-gray-300"
-      (click)="$event.stopPropagation()">
-
-      <button class="absolute top-4 right-4 text-black text-xl hover:text-red-500 transition" (click)="cerrarModal()">✖</button>
-      
-      <h2 class="text-2xl font-bold mb-4">{{ proyectoSeleccionado?.name }}</h2>
-      
-      <div class="w-full h-64 mb-4 rounded overflow-hidden">
-        <img 
-          [src]="proyectoSeleccionado?.image" 
-          [alt]="proyectoSeleccionado?.name"
-          class="w-full h-full object-cover"
-        />
-      </div>
-      
-      <p class="mb-4"><strong>Descripción:</strong> {{ proyectoSeleccionado?.description }}</p>
-      <p class="mb-4"><strong>Tecnologías:</strong> {{ proyectoSeleccionado?.technologies }}</p>
-      
-      <div class="mt-6 flex flex-wrap gap-4">
-        <a 
-          *ngIf="proyectoSeleccionado?.githubUrl"
-          [href]="proyectoSeleccionado?.githubUrl" 
-          target="_blank" 
-          class="bg-gray-900 text-white px-5 py-2 rounded-full hover:bg-yellow-400 hover:text-gray-900 transition"
-        >
-          Ver en GitHub
-        </a>
-
-        <a 
-          *ngIf="proyectoSeleccionado?.demoUrl"
-          [href]="proyectoSeleccionado?.demoUrl" 
-          target="_blank" 
-          class="bg-yellow-400 text-gray-900 px-5 py-2 rounded-full hover:bg-yellow-300 transition"
-        >
-          Ver Demo
-        </a>
-      </div>
-
-      <div class="mt-6 flex justify-end">
-        <button 
-          class="bg-red-600 text-white px-5 py-2 rounded-full hover:bg-red-500 transition"
-          (click)="deleteProyect(proyectoSeleccionado)"
-        >
-          Eliminar Proyecto
-        </button>
-      </div>
-    </div>
   </div>
 </section>
+
+<!-- MODAL DETALLES -->
+<div
+  *ngIf="modalAbierto"
+  class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+
+  <div class="bg-gray-900 text-white p-6 w-full max-w-2xl rounded-xl shadow-xl relative">
+
+    <!-- Botón Cerrar -->
+    <button
+      (click)="cerrarModal()"
+      class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl">
+      ✕
+    </button>
+
+    <h3 class="text-3xl font-bold mb-6 text-center">{{ proyectoSeleccionado?.name }}</h3>
+
+    <img
+      [src]="proyectoSeleccionado?.image"
+      class="w-full h-60 object-cover rounded-lg mb-6">
+
+    <p class="mb-3"><span class="font-bold text-yellow-400">Backend:</span> {{ proyectoSeleccionado?.backend }}</p>
+    <p class="mb-3"><span class="font-bold text-yellow-400">Frontend:</span> {{ proyectoSeleccionado?.frontend }}</p>
+    <p class="mb-3"><span class="font-bold text-yellow-400">Librerías:</span> {{ proyectoSeleccionado?.librarys }}</p>
+
+    <!-- GitHub -->
+    <a
+      [href]="proyectoSeleccionado?.urlgit"
+      target="_blank"
+      class="block bg-yellow-400 text-gray-900 font-semibold py-3 px-6 rounded-full text-center hover:bg-yellow-300 transition-all mb-4">
+      Ir al repositorio
+    </a>
+
+    <!-- Botón Eliminar -->
+    <button
+      (click)="eliminar(proyectoSeleccionado.id)"
+      class="w-full bg-red-600 text-white font-semibold py-3 rounded-full hover:bg-red-700 transition-all">
+      Eliminar Proyecto
+    </button>
+
+  </div>
+</div>
