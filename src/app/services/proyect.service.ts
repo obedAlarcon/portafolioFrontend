@@ -34,7 +34,7 @@ export class ProyectService {
     });
 
     // Realizar la solicitud POST con el token en los encabezados
-    return this.http.post(`${this.url}/api/v1/proyect/upload`, formData, { headers });
+    return this.http.post(`${this.url}/api/v1/proyect/`, formData, { headers });
   }
 
     deleteProyect(id: number): Observable<any> {
