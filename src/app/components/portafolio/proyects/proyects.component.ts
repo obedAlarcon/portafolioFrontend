@@ -18,7 +18,7 @@ export default class ProyectsComponent implements OnInit {
     {
       id: 1,
       name: "portafolio",
-      image: "public/img/proyects/PORTAFOLIO.jpg",
+      image: "PORTAFOLIO.jpg",
       backend: "Node.js, Express, postgres",
       frontend: "Angular 20, TypeScript, RxJS",
       librarys: "JWT, Tailwind CSS",
@@ -27,7 +27,7 @@ export default class ProyectsComponent implements OnInit {
     {
       id: 2,
       name: "sistema de inventario",
-      image: "public/img/proyects/MOTUL.jpg",
+      image: "MOTUL.jpg",
       backend: "mysql, php",
       frontend: "plantilla adminLte",
       librarys: "css, jQuey, ajax",
@@ -36,11 +36,11 @@ export default class ProyectsComponent implements OnInit {
     {
       id: 3,
       name: "Sistema para dispositivos",
-      image: "public/img/proyects/SUNTIC.png",
+      image: "SUNTIC.png",
       backend: "node.js, express, postgres ",
       frontend: "Angular 20, TypeScript, tailwind",
       librarys: "boom, tailwind, jwt",
-      urlgit: "https://github.com/tuusuario/social-dashboard"
+      urlgit: "https://github.com/obedAlarcon/suntic.git"
     },
    
   ];

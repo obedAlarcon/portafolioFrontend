@@ -22,7 +22,7 @@
 
       <!-- Imagen desde assets -->
       <img 
-        [src]="'src/public/img/proyects/PORTAFOLIO.jpg' + p.image" 
+        [src]="'getImagePath(p.image)'+ p.image" 
         [alt]="p.name" 
         class="w-full h-48 object-cover rounded-lg mb-4 border-2 border-gray-700">
 
