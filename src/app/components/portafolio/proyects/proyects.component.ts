@@ -14,35 +14,35 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export default class ProyectsComponent implements OnInit {
   
+   
   proyects = [
     {
       id: 1,
-      name: "portafolio",
+      name: "Portafolio Personal",
       image: "PORTAFOLIO.jpg",
-      backend: "Node.js, Express, postgres",
+      backend: "Node.js, Express, MongoDB",
       frontend: "Angular 20, TypeScript, RxJS",
-      librarys: "JWT, Tailwind CSS",
-      urlgit: "https://github.com/obedAlarcon/portafolioFrontend.git"
+      librarys: "JWT, Mongoose, Tailwind CSS",
+      urlgit: "https://github.com/tuusuario/portafolio"
     },
     {
       id: 2,
-      name: "sistema de inventario",
-      image: "MOTUL.jpg",
-      backend: "mysql, php",
-      frontend: "plantilla adminLte",
-      librarys: "css, jQuey, ajax",
-      urlgit: "https://github.com/obedAlarcon/motull.git"
+      name: "E-commerce Platform",
+      image: "ECOMMERCE.jpg",
+      backend: "Python, Django, PostgreSQL",
+      frontend: "Angular 20, SCSS, NgRx",
+      librarys: "Django REST, Angular Material, Chart.js",
+      urlgit: "https://github.com/tuusuario/ecommerce"
     },
     {
       id: 3,
-      name: "Sistema para dispositivos",
-      image: "SUNTIC.png",
-      backend: "node.js, express, postgres ",
-      frontend: "Angular 20, TypeScript, tailwind",
-      librarys: "boom, tailwind, jwt",
-      urlgit: "https://github.com/obedAlarcon/suntic.git"
-    },
-   
+      name: "Task Management App",
+      image: "TASKAPP.jpg",
+      backend: "Java, Spring Boot, MySQL",
+      frontend: "Angular 20, TypeScript, Bootstrap",
+      librarys: "Spring Security, Hibernate, RxJS",
+      urlgit: "https://github.com/tuusuario/taskapp"
+    }
   ];
 
   modalAbierto = false;
@@ -51,20 +51,31 @@ export default class ProyectsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // Aquí puedes cargar datos desde un servicio si es necesario
+  }
+
+  // FUNCIÓN QUE FALTABA - AÑADE ESTA FUNCIÓN
+  getImagePath(imageName: string): string {
+    // Elige una de estas opciones:
+    
+    // Opción 1: Si tus imágenes están en assets (RECOMENDADO)
+    return `assets/images/proyectos/${imageName}`;
+    
+    // Opción 2: Si tus imágenes están en public
+    // return `src/public/img/proyects/${imageName}`;
+    
+    // Opción 3: Si prefieres ruta relativa desde public
+    // return `img/proyects/${imageName}`;
   }
 
   abrirModal(proyecto: any): void {
     this.proyectoSeleccionado = proyecto;
     this.modalAbierto = true;
-    // Prevenir scroll del body cuando el modal está abierto
     document.body.style.overflow = 'hidden';
   }
 
   cerrarModal(): void {
     this.modalAbierto = false;
     this.proyectoSeleccionado = null;
-    // Restaurar scroll del body
     document.body.style.overflow = 'auto';
   }
 
@@ -72,15 +83,12 @@ export default class ProyectsComponent implements OnInit {
     if (confirm('¿Estás seguro de que quieres eliminar este proyecto?')) {
       this.proyects = this.proyects.filter(p => p.id !== id);
       this.cerrarModal();
-      // Aquí puedes agregar llamada a servicio para eliminar en backend
       console.log('Proyecto eliminado:', id);
     }
   }
 
   irCrearProyecto(): void {
-    // Navegar a la página de crear proyecto
     console.log('Navegar a crear proyecto');
     // this.router.navigate(['/crear-proyecto']);
   }
-
 }
