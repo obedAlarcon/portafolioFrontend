@@ -18,9 +18,9 @@ export default class ContactComponent {
   loading = false;
 
   // Configura tus datos de EmailJS
-  private serviceID = 'TU_SERVICE_ID';
-  private templateID = 'TU_TEMPLATE_ID';
-  private publicKey = 'TU_PUBLIC_KEY';
+  private serviceID = 'service_0g2xhgk';
+  private templateID = 'template_dnax23l';
+  private publicKey = '2d41d77wFsJMmXo2U';
 
   constructor(private fb: FormBuilder) {}
 
@@ -43,7 +43,8 @@ export default class ContactComponent {
     const templateParams = {
       name: this.contactForm.value.name,
       email: this.contactForm.value.email,
-      message: this.contactForm.value.message
+      message: this.contactForm.value.message,
+        time: new Date().toLocaleString()
     };
 
     emailjs.send(this.serviceID, this.templateID, templateParams, this.publicKey)
