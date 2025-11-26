@@ -58,7 +58,7 @@ export default class ProyectsComponent implements OnInit {
     // Elige una de estas opciones:
     
     // Opción 1: Si tus imágenes están en assets (RECOMENDADO)
-    return `assets/img/${imageName}`;
+    return `public/img/proyects/${imageName}`;
     
     // Opción 2: Si tus imágenes están en public
     // return `src/public/img/proyects/${imageName}`;
