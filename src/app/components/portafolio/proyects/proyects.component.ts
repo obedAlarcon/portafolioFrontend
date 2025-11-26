@@ -28,7 +28,7 @@ export default class ProyectsComponent implements OnInit {
     {
       id: 2,
       name: "Control de dispositivos",
-      image: "SUNTIC.jpg",
+      image: "SUNTIC.png",
       backend: "node.js, postgres, express",
       frontend: "Angular 20, SCSS, NgRx",
       librarys: "boom, Tailwind,Jwt",
