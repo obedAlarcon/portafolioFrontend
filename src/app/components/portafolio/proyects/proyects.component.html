@@ -73,7 +73,7 @@ class="w-full h-48 object-cover rounded-lg mb-4 border-2 border-gray-700">
 
     <!-- Imagen desde assets -->
     <img
-      [src]="'public/img/proyect/PORTAFOLIO.jpg' + proyectoSeleccionado?.image"
+      [src]="getImagePath(proyectoSeleccionado.image)"
       [alt]="proyectoSeleccionado?.name"
       class="w-full h-60 object-cover rounded-lg mb-6 border-2 border-gray-700">
 
