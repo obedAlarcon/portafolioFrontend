@@ -20,28 +20,28 @@ export default class ProyectsComponent implements OnInit {
       id: 1,
       name: "Portafolio Personal",
       image: "PORTAFOLIO.jpg",
-      backend: "Node.js, Express, MongoDB",
+      backend: "Node.js, Express, Postgres",
       frontend: "Angular 20, TypeScript, RxJS",
-      librarys: "JWT, Mongoose, Tailwind CSS",
-      urlgit: "https://github.com/tuusuario/portafolio"
+      librarys: "JWT, postgres, Tailwind CSS",
+      urlgit: "https://github.com/obedAlarcon/portafolioFrontend.git"
     },
     {
       id: 2,
-      name: "E-commerce Platform",
-      image: "ECOMMERCE.jpg",
-      backend: "Python, Django, PostgreSQL",
+      name: "Control de dispositivos",
+      image: "SUNTIC.jpg",
+      backend: "node.js, postgres, express",
       frontend: "Angular 20, SCSS, NgRx",
-      librarys: "Django REST, Angular Material, Chart.js",
-      urlgit: "https://github.com/tuusuario/ecommerce"
+      librarys: "boom, Tailwind,Jwt",
+      urlgit: "https://github.com/obedAlarcon/suntic.git"
     },
     {
       id: 3,
-      name: "Task Management App",
-      image: "TASKAPP.jpg",
-      backend: "Java, Spring Boot, MySQL",
-      frontend: "Angular 20, TypeScript, Bootstrap",
-      librarys: "Spring Security, Hibernate, RxJS",
-      urlgit: "https://github.com/tuusuario/taskapp"
+      name: "Sistema de inventario",
+      image: "MOTUL.jpg",
+      backend: "mysql, php",
+      frontend: "Plantilla adminLte",
+      librarys: "date picker,jQuery, ajax",
+      urlgit: "https://github.com/obedAlarcon/motull.git"
     }
   ];
 
@@ -58,7 +58,7 @@ export default class ProyectsComponent implements OnInit {
     // Elige una de estas opciones:
     
     // Opción 1: Si tus imágenes están en assets (RECOMENDADO)
-    return `public/img/proyects/${imageName}`;
+    return `assets/img/${imageName}`;
     
     // Opción 2: Si tus imágenes están en public
     // return `src/public/img/proyects/${imageName}`;
