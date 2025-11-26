@@ -18,7 +18,7 @@ export default class ProyectsComponent implements OnInit {
     {
       id: 1,
       name: "portafolio",
-      image: "src/public/img/proyects/PORTAFOLIO.jpg",
+      image: "public/img/proyects/PORTAFOLIO.jpg",
       backend: "Node.js, Express, postgres",
       frontend: "Angular 20, TypeScript, RxJS",
       librarys: "JWT, Tailwind CSS",
@@ -27,7 +27,7 @@ export default class ProyectsComponent implements OnInit {
     {
       id: 2,
       name: "sistema de inventario",
-      image: "src/public/img/proyects/MOTUL.jpg",
+      image: "public/img/proyects/MOTUL.jpg",
       backend: "mysql, php",
       frontend: "plantilla adminLte",
       librarys: "css, jQuey, ajax",
@@ -36,7 +36,7 @@ export default class ProyectsComponent implements OnInit {
     {
       id: 3,
       name: "Sistema para dispositivos",
-      image: "src/public/img/proyects/SUNTIC.png",
+      image: "public/img/proyects/SUNTIC.png",
       backend: "node.js, express, postgres ",
       frontend: "Angular 20, TypeScript, tailwind",
       librarys: "boom, tailwind, jwt",
