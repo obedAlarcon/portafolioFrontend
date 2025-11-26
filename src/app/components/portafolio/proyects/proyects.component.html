@@ -6,68 +6,124 @@
     <!-- Botón Crear Proyecto -->
     <button
       (click)="irCrearProyecto()"
-      class="bg-yellow-400 text-gray-900 font-semibold flex justify-center mb-10 py-3 px-6 rounded-full shadow hover:bg-yellow-300 transition-all">
+      class="bg-yellow-400 text-gray-900 font-semibold flex items-center gap-2 py-3 px-6 rounded-full shadow hover:bg-yellow-300 transition-all duration-300">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+      </svg>
       Crear Proyecto
     </button>
   </div>
 
   <!-- Cards -->
-  <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+  <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 
-    <div *ngFor="let p of proyects" class="bg-gray-900 rounded-xl shadow-lg p-4">
+    <div *ngFor="let p of proyects" 
+         class="bg-gray-900 rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all duration-300 hover:transform hover:scale-105">
 
-      <img [src]="p.image" alt="Proyecto" class="w-full h-48 object-cover rounded-lg mb-4">
+      <!-- Imagen desde assets -->
+      <img 
+        [src]="'assets/images/proyectos/' + p.image" 
+        [alt]="p.name" 
+        class="w-full h-48 object-cover rounded-lg mb-4 border-2 border-gray-700">
 
-      <h3 class="text-xl font-semibold mb-4">{{ p.name }}</h3>
+      <h3 class="text-xl font-semibold mb-2 text-yellow-400">{{ p.name }}</h3>
+      
+      <p class="text-gray-300 text-sm mb-4 line-clamp-2">
+        {{ p.frontend }} | {{ p.backend }}
+      </p>
 
       <button
         (click)="abrirModal(p)"
-        class="w-full bg-yellow-400 text-gray-900 font-semibold py-2 rounded-full hover:bg-yellow-300 transition-all">
+        class="w-full bg-yellow-400 text-gray-900 font-semibold py-3 rounded-full hover:bg-yellow-300 transition-all duration-300 flex items-center justify-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+          <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+        </svg>
         Ver Detalles
       </button>
     </div>
 
   </div>
+
+  <!-- Mensaje si no hay proyectos -->
+  <div *ngIf="proyects.length === 0" class="text-center py-12">
+    <p class="text-gray-400 text-lg">No hay proyectos disponibles</p>
+    <button
+      (click)="irCrearProyecto()"
+      class="mt-4 bg-yellow-400 text-gray-900 font-semibold py-2 px-6 rounded-full hover:bg-yellow-300 transition-all">
+      Crear Primer Proyecto
+    </button>
+  </div>
+
 </section>
 
 <!-- MODAL DETALLES -->
 <div
   *ngIf="modalAbierto"
-  class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+  class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4"
+  (click)="cerrarModal()">
 
-  <div class="bg-gray-900 text-white p-6 w-full max-w-2xl rounded-xl shadow-xl relative">
+  <div 
+    class="bg-gray-900 text-white p-6 w-full max-w-2xl rounded-xl shadow-xl relative max-h-[90vh] overflow-y-auto"
+    (click)="$event.stopPropagation()">
 
     <!-- Botón Cerrar -->
     <button
       (click)="cerrarModal()"
-      class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl">
+      class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl bg-gray-800 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-700 transition-all">
       ✕
     </button>
 
-    <h3 class="text-3xl font-bold mb-6 text-center">{{ proyectoSeleccionado?.name }}</h3>
+    <!-- Título -->
+    <h3 class="text-3xl font-bold mb-6 text-center text-yellow-400">{{ proyectoSeleccionado?.name }}</h3>
 
+    <!-- Imagen desde assets -->
     <img
-      [src]="proyectoSeleccionado?.image"
-      class="w-full h-60 object-cover rounded-lg mb-6">
+      [src]="'assets/images/proyectos/' + proyectoSeleccionado?.image"
+      [alt]="proyectoSeleccionado?.name"
+      class="w-full h-60 object-cover rounded-lg mb-6 border-2 border-gray-700">
 
-    <p class="mb-3"><span class="font-bold text-yellow-400">Backend:</span> {{ proyectoSeleccionado?.backend }}</p>
-    <p class="mb-3"><span class="font-bold text-yellow-400">Frontend:</span> {{ proyectoSeleccionado?.frontend }}</p>
-    <p class="mb-3"><span class="font-bold text-yellow-400">Librerías:</span> {{ proyectoSeleccionado?.librarys }}</p>
+    <!-- Detalles del proyecto -->
+    <div class="space-y-4 mb-6">
+      <p class="mb-3">
+        <span class="font-bold text-yellow-400 block mb-1">Backend:</span> 
+        <span class="text-gray-300">{{ proyectoSeleccionado?.backend }}</span>
+      </p>
+      
+      <p class="mb-3">
+        <span class="font-bold text-yellow-400 block mb-1">Frontend:</span> 
+        <span class="text-gray-300">{{ proyectoSeleccionado?.frontend }}</span>
+      </p>
+      
+      <p class="mb-3">
+        <span class="font-bold text-yellow-400 block mb-1">Librerías y Tecnologías:</span> 
+        <span class="text-gray-300">{{ proyectoSeleccionado?.librarys }}</span>
+      </p>
+    </div>
 
-    <!-- GitHub -->
-    <a
-      [href]="proyectoSeleccionado?.urlgit"
-      target="_blank"
-      class="block bg-yellow-400 text-gray-900 font-semibold py-3 px-6 rounded-full text-center hover:bg-yellow-300 transition-all mb-4">
-      Ir al repositorio
-    </a>
+    <!-- Botones de acción -->
+    <div class="space-y-3">
+      <!-- GitHub -->
+      <a
+        [href]="proyectoSeleccionado?.urlgit"
+        target="_blank"
+        class="block bg-yellow-400 text-gray-900 font-semibold py-3 px-6 rounded-full text-center hover:bg-yellow-300 transition-all duration-300 flex items-center justify-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd" />
+        </svg>
+        Ir al repositorio GitHub
+      </a>
 
-    <!-- Botón Eliminar -->
-    <button
-      (click)="eliminar(proyectoSeleccionado.id)"
-      class="w-full bg-red-600 text-white font-semibold py-3 rounded-full hover:bg-red-700 transition-all">
-      Eliminar Proyecto
-    </button>
+      <!-- Botón Eliminar -->
+      <button
+        (click)="eliminar(proyectoSeleccionado?.id)"
+        class="w-full bg-red-600 text-white font-semibold py-3 rounded-full hover:bg-red-700 transition-all duration-300 flex items-center justify-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+        </svg>
+        Eliminar Proyecto
+      </button>
+    </div>
 
   </div>
 </div>

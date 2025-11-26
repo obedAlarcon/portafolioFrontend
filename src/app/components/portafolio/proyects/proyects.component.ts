@@ -13,64 +13,100 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
     styleUrl: './proyects.component.css'
 })
 export default class ProyectsComponent implements OnInit {
- proyects: any[] = [];
+  
+  proyects = [
+    {
+      id: 1,
+      name: "E-commerce Platform",
+      image: "proyecto1.jpg",
+      backend: "Node.js, Express, MongoDB",
+      frontend: "Angular 20, TypeScript, RxJS",
+      librarys: "JWT, Mongoose, Tailwind CSS",
+      urlgit: "https://github.com/tuusuario/ecommerce-platform"
+    },
+    {
+      id: 2,
+      name: "Task Management App",
+      image: "proyecto2.jpg",
+      backend: "Python, Django, PostgreSQL",
+      frontend: "Angular 20, SCSS, NgRx",
+      librarys: "Django REST, Angular Material, Chart.js",
+      urlgit: "https://github.com/tuusuario/task-manager"
+    },
+    {
+      id: 3,
+      name: "Social Media Dashboard",
+      image: "proyecto3.jpg",
+      backend: "Java, Spring Boot, MySQL",
+      frontend: "Angular 20, TypeScript, Bootstrap",
+      librarys: "Spring Security, Hibernate, RxJS",
+      urlgit: "https://github.com/tuusuario/social-dashboard"
+    },
+    {
+      id: 4,
+      name: "Weather Application",
+      image: "proyecto4.jpg",
+      backend: "Node.js, Fastify, Redis",
+      frontend: "Angular 20, PWA, Service Workers",
+      librarys: "Axios, Chart.js, Leaflet Maps",
+      urlgit: "https://github.com/tuusuario/weather-app"
+    },
+    {
+      id: 5,
+      name: "Finance Tracker",
+      image: "proyecto5.jpg",
+      backend: "C# .NET, SQL Server",
+      frontend: "Angular 20, TypeScript, PrimeNG",
+      librarys: "Entity Framework, Chart.js, NgRx Store",
+      urlgit: "https://github.com/tuusuario/finance-tracker"
+    },
+    {
+      id: 6,
+      name: "Real Estate Portal",
+      image: "proyecto6.jpg",
+      backend: "PHP, Laravel, MySQL",
+      frontend: "Angular 20, JavaScript, Tailwind",
+      librarys: "Eloquent, Google Maps API, File Upload",
+      urlgit: "https://github.com/tuusuario/real-estate"
+    }
+  ];
 
   modalAbierto = false;
-  proyectoSeleccionado: any = null;
+  proyectoSeleccionado: any;
 
-  constructor(
-    private proyectService: ProyectService,
-    private router: Router
-  ) {}
+  constructor() { }
 
   ngOnInit(): void {
-    this.cargarProyectos();
+    // Aquí puedes cargar datos desde un servicio si es necesario
   }
 
-  cargarProyectos() {
-    this.proyectService.getProyects().subscribe({
-      next: (data) => this.proyects = data,
-      error: (err) => console.error('Error cargando proyectos:', err)
-    });
-  }
-
-  // 👉 BOTÓN CREAR PROYECTO → LOGIN
-  irCrearProyecto() {
-    this.router.navigate(['/login']);
-  }
-
-  // 👉 ABRIR MODAL
-  abrirModal(proyecto: any) {
+  abrirModal(proyecto: any): void {
     this.proyectoSeleccionado = proyecto;
     this.modalAbierto = true;
+    // Prevenir scroll del body cuando el modal está abierto
+    document.body.style.overflow = 'hidden';
   }
 
-  // 👉 CERRAR MODAL
-  cerrarModal() {
+  cerrarModal(): void {
     this.modalAbierto = false;
     this.proyectoSeleccionado = null;
+    // Restaurar scroll del body
+    document.body.style.overflow = 'auto';
   }
 
-  // 👉 ELIMINAR PROYECTO
-  eliminar(id: number) {
-    const conf = confirm('¿Seguro que deseas eliminar este proyecto?');
-    if (!conf) return;
+  eliminar(id: number): void {
+    if (confirm('¿Estás seguro de que quieres eliminar este proyecto?')) {
+      this.proyects = this.proyects.filter(p => p.id !== id);
+      this.cerrarModal();
+      // Aquí puedes agregar llamada a servicio para eliminar en backend
+      console.log('Proyecto eliminado:', id);
+    }
+  }
 
-    this.proyectService.deleteProyect(id).subscribe({
-      next: () => {
-        alert('Proyecto eliminado');
-        this.cerrarModal();
-        this.cargarProyectos();
-      },
-      error: (err) => {
-        console.error('Error al eliminar proyecto:', err);
-
-        if (err.status === 401) {
-          alert('Debes iniciar sesión');
-          this.router.navigate(['/login']);
-        }
-      }
-    });
+  irCrearProyecto(): void {
+    // Navegar a la página de crear proyecto
+    console.log('Navegar a crear proyecto');
+    // this.router.navigate(['/crear-proyecto']);
   }
 
 }
