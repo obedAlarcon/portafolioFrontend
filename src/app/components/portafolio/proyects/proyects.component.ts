@@ -17,58 +17,32 @@ export default class ProyectsComponent implements OnInit {
   proyects = [
     {
       id: 1,
-      name: "E-commerce Platform",
-      image: "proyecto1.jpg",
-      backend: "Node.js, Express, MongoDB",
+      name: "portafolio",
+      image: "PORTAFOLIO.jpg",
+      backend: "Node.js, Express, postgres",
       frontend: "Angular 20, TypeScript, RxJS",
-      librarys: "JWT, Mongoose, Tailwind CSS",
-      urlgit: "https://github.com/tuusuario/ecommerce-platform"
+      librarys: "JWT, Tailwind CSS",
+      urlgit: "https://github.com/obedAlarcon/portafolioFrontend.git"
     },
     {
       id: 2,
-      name: "Task Management App",
-      image: "proyecto2.jpg",
-      backend: "Python, Django, PostgreSQL",
-      frontend: "Angular 20, SCSS, NgRx",
-      librarys: "Django REST, Angular Material, Chart.js",
-      urlgit: "https://github.com/tuusuario/task-manager"
+      name: "sistema de inventario",
+      image: "MOTUL.jpg",
+      backend: "mysql, php",
+      frontend: "plantilla adminLte",
+      librarys: "css, jQuey, ajax",
+      urlgit: "https://github.com/obedAlarcon/motull.git"
     },
     {
       id: 3,
-      name: "Social Media Dashboard",
-      image: "proyecto3.jpg",
-      backend: "Java, Spring Boot, MySQL",
-      frontend: "Angular 20, TypeScript, Bootstrap",
-      librarys: "Spring Security, Hibernate, RxJS",
+      name: "Sistema para dispositivos",
+      image: "SUNTIC.jpg",
+      backend: "node.js, express, postgres ",
+      frontend: "Angular 20, TypeScript, tailwind",
+      librarys: "boom, tailwind, jwt",
       urlgit: "https://github.com/tuusuario/social-dashboard"
     },
-    {
-      id: 4,
-      name: "Weather Application",
-      image: "proyecto4.jpg",
-      backend: "Node.js, Fastify, Redis",
-      frontend: "Angular 20, PWA, Service Workers",
-      librarys: "Axios, Chart.js, Leaflet Maps",
-      urlgit: "https://github.com/tuusuario/weather-app"
-    },
-    {
-      id: 5,
-      name: "Finance Tracker",
-      image: "proyecto5.jpg",
-      backend: "C# .NET, SQL Server",
-      frontend: "Angular 20, TypeScript, PrimeNG",
-      librarys: "Entity Framework, Chart.js, NgRx Store",
-      urlgit: "https://github.com/tuusuario/finance-tracker"
-    },
-    {
-      id: 6,
-      name: "Real Estate Portal",
-      image: "proyecto6.jpg",
-      backend: "PHP, Laravel, MySQL",
-      frontend: "Angular 20, JavaScript, Tailwind",
-      librarys: "Eloquent, Google Maps API, File Upload",
-      urlgit: "https://github.com/tuusuario/real-estate"
-    }
+   
   ];
 
   modalAbierto = false;
