@@ -19,7 +19,7 @@ export default class ProyectsComponent implements OnInit {
     {
       id: 1,
       name: "Portafolio Personal",
-      image: "PORTAFOLIO.jpg",
+      image: "portafolio2.jpg",
       backend: "Node.js, Express, Postgres",
       frontend: "Angular 20, TypeScript, RxJS",
       librarys: "JWT, postgres, Tailwind CSS",
