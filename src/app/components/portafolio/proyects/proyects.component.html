@@ -22,15 +22,13 @@
 
       <!-- Imagen desde assets -->
       <img 
-        [src]="'assets/images/proyectos/' + p.image" 
+        [src]="'public/img/proyect/PORTAFOLIO.jpg' + p.image" 
         [alt]="p.name" 
         class="w-full h-48 object-cover rounded-lg mb-4 border-2 border-gray-700">
 
       <h3 class="text-xl font-semibold mb-2 text-yellow-400">{{ p.name }}</h3>
       
-      <p class="text-gray-300 text-sm mb-4 line-clamp-2">
-        {{ p.frontend }} | {{ p.backend }}
-      </p>
+      
 
       <button
         (click)="abrirModal(p)"
@@ -79,7 +77,7 @@
 
     <!-- Imagen desde assets -->
     <img
-      [src]="'assets/images/proyectos/' + proyectoSeleccionado?.image"
+      [src]="'public/img/proyect/PORTAFOLIO.jpg' + proyectoSeleccionado?.image"
       [alt]="proyectoSeleccionado?.name"
       class="w-full h-60 object-cover rounded-lg mb-6 border-2 border-gray-700">
 
@@ -87,7 +85,7 @@
     <div class="space-y-4 mb-6">
       <p class="mb-3">
         <span class="font-bold text-yellow-400 block mb-1">Backend:</span> 
-        <span class="text-gray-300">{{ proyectoSeleccionado?.backend }}</span>
+        <span class="text-gray-300">{{proyectoSeleccionado?.backend}}</span>
       </p>
       
       <p class="mb-3">
