@@ -4,6 +4,7 @@ import { RouterLink, RouterLinkActive, RouterLinkWithHref, RouterModule, RouterO
 import { Router } from '@angular/router';
 import { ProyectService } from '../../../services/proyect.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { url } from 'node:inspector';
 
 
 @Component({
@@ -42,7 +43,36 @@ export default class ProyectsComponent implements OnInit {
       frontend: "Plantilla adminLte",
       librarys: "date picker,jQuery, ajax",
       urlgit: "https://github.com/obedAlarcon/motull.git"
+    },
+
+   
+    {
+      id:4,
+      name: "pegina web de tienda de libros digitales",
+      image: "libreria.jpg",
+      frontend:"html, css",
+      librarys:"bootstrap",
+      urlgit:"https://libreria-3ftl-k3eiv3j64-obed-alarcons-projects.vercel.app/index.html"
+    },
+
+    {
+      id:5,
+      name:"tienda de productos ecologicos",
+      image:"ecovida.jpg",
+      frontend:"html, css No responsiva",
+      librarys:"goggle fonts",
+      urlgit:"https://eco-vida-63mb9lbkn-obed-alarcons-projects.vercel.app/"
+    },
+    {
+      id:6,
+      name:"app para promedio de notas",
+      image:"notas.jpg",
+      frontend:"html, css",
+      librarys:"bootstrap, swift alert, goggle fonts",
+      urlgit:"https://gesti-n-de-notas.vercel.app/"
     }
+    
+
   ];
 
   modalAbierto = false;
