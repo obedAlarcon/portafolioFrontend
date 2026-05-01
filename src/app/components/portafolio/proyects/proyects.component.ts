@@ -52,7 +52,7 @@ export default class ProyectsComponent implements OnInit {
       image: "libreria.jpg",
       frontend:"html, css",
       librarys:"bootstrap",
-      urlgit:"https://libreria-3ftl-k3eiv3j64-obed-alarcons-projects.vercel.app/index.html"
+      urlgit:"https://libreria-3ftl.vercel.app/"
     },
 
     {
@@ -61,7 +61,7 @@ export default class ProyectsComponent implements OnInit {
       image:"ecovida.jpg",
       frontend:"html, css No responsiva",
       librarys:"goggle fonts",
-      urlgit:"https://eco-vida-63mb9lbkn-obed-alarcons-projects.vercel.app/"
+      urlgit:"https://eco-vida-black.vercel.app/"
     },
     {
       id:6,
